@@ -2,7 +2,7 @@ import json
 import aiohttp
 import discord
 import urllib.parse
-from global_mapping import constants
+from global_mapping import battlebit as BATTLEBIT
 
 async def main(interaction: discord.Interaction, searchterm: str):
     async with aiohttp.ClientSession() as session:
@@ -24,7 +24,7 @@ async def main(interaction: discord.Interaction, searchterm: str):
             total += 1
             embed.add_field(
                 name=server.get("Name"),
-                value=f"on **{server.get('Map', '')}** with **{server.get('Players', 0)}/{server.get('MaxPlayers', 0)}[{server.get('QueuePlayers', 0)}]** players, **{constants.BATTLEBIT_MODES.get(server.get('Gamemode', ''), server.get('Gamemode', ''))}**\n",
+                value=f"on **{server.get('Map', '')}** with **{server.get('Players', 0)}/{server.get('MaxPlayers', 0)}[{server.get('QueuePlayers', 0)}]** players, **{BATTLEBIT.MODES.get(server.get('Gamemode', ''), server.get('Gamemode', ''))}**\n",
                 inline=False,
             )
     # footer
