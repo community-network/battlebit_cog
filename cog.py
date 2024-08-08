@@ -5,14 +5,17 @@ from discord import app_commands
 from . import server_list
 
 
-class BattleBit(commands.GroupCog, name="bb"):
+class BattleBit(commands.Cog, name="bb"):
     """Battlebit"""
 
     def __init__(self, bot: commands.AutoShardedBot):
         self.bot = bot
         super().__init__()
 
-    @app_commands.command(
+    group = app_commands.Group(name="bb", description="Battlebit cog")
+    group.allowed_installs = app_commands.AppInstallationType(guild=True, user=True)
+    
+    @group.command(
         name="serverlist",
         description="List all the servers based on a searchterm for Battlebit.",
     )
